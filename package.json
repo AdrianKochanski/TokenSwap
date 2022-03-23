@@ -1,0 +1,43 @@
+{
+  "name": "tokenswap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "0.1.9",
+    "@openzeppelin/contracts": "^4.4.2",
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "bn.js": "^5.2.0",
+    "dotenv": "^8.6.0",
+    "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "@chainlink/belt": "^0.0.1",
+    "@chainlink/test-helpers": "0.0.5",
+    "@openzeppelin/test-helpers": "^0.5.6",
+    "chai": "^4.3.6",
+    "depcheck": "^0.9.1",
+    "ethereum-waffle": "^3.4.0",
+    "hardhat": "^2.8.3",
+    "mocha": "^9.2.0",
+    "solhint": "^2.1.0",
+    "truffle": "^5.5.3",
+    "truffle-plugin-verify": "^0.5.21"
+  },
+  "scripts": {
+    "compile": "npx truffle compile",
+    "console:dev": "npx truffle console --network cldev",
+    "console:live": "npx truffle console --network live",
+    "depcheck": "echo '@chainlink/box' && depcheck --ignore-dirs=build/contracts || true",
+    "solhint": "solhint ./contracts/**/*.sol",
+    "lint": "yarn solhint",
+    "migrate:dev": "npx truffle migrate --reset --network cldev",
+    "migrate:live": "npx truffle migrate --network live",
+    "test": "NODE_ENV=test npx truffle test"
+  },
+  "author": "Adrian Kochański",
+  "license": "ISC"
+}
