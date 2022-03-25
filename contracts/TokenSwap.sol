@@ -44,7 +44,7 @@ contract TokenSwap is Ownable {
         tokenOutput.transfer(msg.sender, outputAmount);
     }
 
-    function getSwapAmount(ERC20 _token, uint inputAmount) internal view returns(ERC20 tokenOutput, uint outputAmount)
+    function getSwapAmount(ERC20 _token, uint inputAmount) public view returns(ERC20 tokenOutput, uint outputAmount)
     {
         if(address(token1) == address(_token)) {
             tokenOutput = token2;
