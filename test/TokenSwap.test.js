@@ -31,7 +31,7 @@ contract('TokenSwap', accounts => {
         it('Reverts when deposit a different coin', async () => {
             const erc20TK_false = await ERC20TK2.new();
             await erc20TK_false.approve(tokenSwap.address, amountTK2);
-            expect(tokenSwap.deposit(erc20TK_false.address, amountTK2)).to.be.revertedWith('Exchange not allowed!');
+            expect(tokenSwap.deposit(erc20TK_false.address, amountTK2)).to.revertedWith('Deposit not allowed!');
         });
     });
 
@@ -85,13 +85,9 @@ contract('TokenSwap', accounts => {
         });
 
         it("Reverts when exchange a different coin", async () => {
-            await tokenSwap.updatePrice(toWei(changePriceOverflow, 'ether'));
-            expect(tokenSwap.exchange(erc20TK1.address, amountTK1, {from: user})).to.revertedWith("ERC20 balance too low!");
-
-            const balanceTK1AfterSwap = fromWei(await erc20TK1.balanceOf(user), 'ether');
-            const balanceTK2AfterSwap = fromWei(await erc20TK2.balanceOf(user), 'ether');
-            expect(balanceTK1BeforeSwap == balanceTK1AfterSwap).to.be.true;
-            expect(balanceTK2BeforeSwap == balanceTK2AfterSwap).to.be.true;
+            const erc20TK_false = await ERC20TK2.new();
+            await erc20TK_false.approve(tokenSwap.address, amountTK2);
+            expect(tokenSwap.exchange(erc20TK_false.address, amountTK2)).to.revertedWith("Exchange not allowed!");
         });
     });
 })

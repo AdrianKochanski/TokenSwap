@@ -11,7 +11,6 @@
     "web3": "^1.7.1"
   },
   "devDependencies": {
-    "@chainlink/belt": "^0.0.1",
     "chai": "^4.3.6",
     "chai-almost": "^1.0.1",
     "ethereum-waffle": "^3.4.0",
@@ -19,14 +18,11 @@
   },
   "scripts": {
     "compile": "npx truffle compile",
-    "console:dev": "npx truffle console --network cldev",
-    "console:live": "npx truffle console --network live",
-    "depcheck": "echo '@chainlink/box' && depcheck --ignore-dirs=build/contracts || true",
-    "solhint": "solhint ./contracts/**/*.sol",
-    "lint": "yarn solhint",
-    "migrate:dev": "npx truffle migrate --reset --network cldev",
-    "migrate:live": "npx truffle migrate --network live",
-    "test": "NODE_ENV=test npx truffle test"
+    "console": "npx truffle console",
+    "console:rinkeby": "npx truffle console --network rinkeby",
+    "migrate": "npx truffle migrate --reset",
+    "migrate:rinkeby": "npx truffle migrate --network rinkeby",
+    "test": "npx truffle test"
   },
   "author": "Adrian Kochański",
   "license": "ISC"

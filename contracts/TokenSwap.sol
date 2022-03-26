@@ -24,7 +24,7 @@ contract TokenSwap is Ownable {
 
     function deposit(ERC20 _token, uint amount) public onlyOwner 
     {
-        require(address(token1) != address(_token) || address(token2) != address(_token), "Deposit not allowed!");
+        require(address(token1) == address(_token) || address(token2) == address(_token), "Deposit not allowed!");
         require(_token.allowance(msg.sender, address(this)) >= amount, "ERC20 allowance too low!");
 
         _token.transferFrom(msg.sender, address(this), amount);
@@ -33,7 +33,7 @@ contract TokenSwap is Ownable {
     function exchange(ERC20 _token, uint amount) public 
     {
         require(amount > 0, "Swap amount too low!");
-        require(address(token1) != address(_token) || address(token2) != address(_token), "Exchange not allowed!");
+        require(address(token1) == address(_token) || address(token2) == address(_token), "Exchange not allowed!");
         require(_token.allowance(msg.sender, address(this)) >= amount, "ERC20 allowance too low!");
         _token.transferFrom(msg.sender, address(this), amount);
 
